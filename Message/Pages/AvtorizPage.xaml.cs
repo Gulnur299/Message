@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Message.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace Message.Pages
     /// </summary>
     public partial class AvtorizPage : Page
     {
+        public static User user {  get; set; }
         public AvtorizPage()
         {
             InitializeComponent();
@@ -27,7 +29,17 @@ namespace Message.Pages
 
         private void BtnAuthoriz_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new KomnataPage());
+            string login = TbLogin.Text.Trim();
+            string password = TbPassword.Password.Trim();
+            user = DB_Class.connection.User.Where(x => x.Login == login && x.Password== password).FirstOrDefault();
+            if(user==null)
+            {
+                MessageBox.Show("Что-то не так");
+            }
+            else
+            {
+                NavigationService.Navigate(new Pages.KomnataPage(user));
+            }
         }
     }
 }

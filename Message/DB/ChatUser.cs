@@ -14,9 +14,9 @@ namespace Message.DB
     
     public partial class ChatUser
     {
-        public int Id { get; set; }
-        public Nullable<int> Id_ChatRoom { get; set; }
-        public Nullable<int> Id_User { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> ID_ChatRoom { get; set; }
+        public Nullable<int> ID_User { get; set; }
     
         public virtual ChatRoom ChatRoom { get; set; }
         public virtual User User { get; set; }

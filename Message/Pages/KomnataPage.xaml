@@ -26,10 +26,22 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="1" x:Name="Nazad" Click="Nazad_Click" Content="Назад" Margin="11 11 11 11"/>
-        <Button Grid.Column="6" Grid.Row="7" x:Name="Otpr" Click="Otpr_Click" Content="Отправить" Margin="11 11 11 11"/>
-        <ListView Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="6">
-            
-        </ListView>
+        <TextBlock Text="Search:" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" Grid.Column="0" Grid.Row="0"/>
+        <TextBox x:Name="tbSearch" Grid.Row="0" Grid.Column="1" SelectionChanged="tbSearch_SelectionChanged" BorderBrush="Black" BorderThickness="3,3,3,3"/>
+        <TextBlock Text="Hello" />
+
+        <Button Grid.Column="0" Grid.Row="1" x:Name="Nazad" Click="Nazad_Click" Content="Закрыть" Margin="11 11 11 11" FontWeight="Bold" VerticalAlignment="Top" Height="40" Width="160"/>
+
+
+        <Button Grid.Column="6" Grid.Row="7" x:Name="Otpr" Click="Otpr_Click" Content="Добавить" Margin="11 11 11 11"/>
+        <ScrollViewer Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="6">
+            <ListView x:Name="lvChat" SelectionChanged="lvChat_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Чат" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </Page>

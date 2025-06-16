@@ -13,10 +13,10 @@ namespace Message.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class shifrEntities : DbContext
+    public partial class MessangerEntities : DbContext
     {
-        public shifrEntities()
-            : base("name=shifrEntities")
+        public MessangerEntities()
+            : base("name=MessangerEntities")
         {
         }
     

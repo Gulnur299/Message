@@ -14,11 +14,11 @@ namespace Message.DB
     
     public partial class Mess
     {
-        public int Id { get; set; }
-        public Nullable<int> Id_User { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> ID_User { get; set; }
         public string Mess1 { get; set; }
-        public Nullable<System.DateTime> DateTime { get; set; }
-        public Nullable<int> Id_Chatroom { get; set; }
+        public Nullable<System.DateTime> DueDate { get; set; }
+        public Nullable<int> ID_ChatRoom { get; set; }
     
         public virtual ChatRoom ChatRoom { get; set; }
         public virtual User User { get; set; }

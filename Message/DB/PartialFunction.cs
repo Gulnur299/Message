@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Message.DB
 {
-    internal class DB_Class
+    internal class PartialFunction
     {
-        public static MessangerEntities connection = new MessangerEntities();
     }
 }

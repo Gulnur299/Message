@@ -4,31 +4,31 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище shifrModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище MessangerModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChatRoom">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="ChatUser">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Id_ChatRoom" Type="int" />
-          <Property Name="Id_User" Type="int" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_ChatRoom" Type="int" />
+          <Property Name="ID_User" Type="int" />
         </EntityType>
         <EntityType Name="Mess">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Id_User" Type="int" />
-          <Property Name="Mess" Type="nchar" MaxLength="10" />
-          <Property Name="DateTime" Type="datetime" />
-          <Property Name="Id_Chatroom" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_User" Type="int" />
+          <Property Name="Mess" Type="varchar" MaxLength="250" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="ID_ChatRoom" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -42,22 +42,22 @@
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar(max)" />
-          <Property Name="Login" Type="varchar(max)" />
-          <Property Name="Pass" Type="varchar(max)" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Login" Type="varchar" MaxLength="250" />
+          <Property Name="Password" Type="varchar" MaxLength="250" />
         </EntityType>
         <Association Name="FK_ChatUser_ChatRoom">
           <End Role="ChatRoom" Type="Self.ChatRoom" Multiplicity="0..1" />
           <End Role="ChatUser" Type="Self.ChatUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChatRoom">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="ChatUser">
-              <PropertyRef Name="Id_ChatRoom" />
+              <PropertyRef Name="ID_ChatRoom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -66,10 +66,10 @@
           <End Role="ChatUser" Type="Self.ChatUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="ChatUser">
-              <PropertyRef Name="Id_User" />
+              <PropertyRef Name="ID_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -78,10 +78,10 @@
           <End Role="Mess" Type="Self.Mess" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChatRoom">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Mess">
-              <PropertyRef Name="Id_Chatroom" />
+              <PropertyRef Name="ID_ChatRoom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -90,14 +90,14 @@
           <End Role="Mess" Type="Self.Mess" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Mess">
-              <PropertyRef Name="Id_User" />
+              <PropertyRef Name="ID_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище shifrModelContainer">
+        <EntityContainer Name="Хранилище MessangerModelContainer">
           <EntitySet Name="ChatRoom" EntityType="Self.ChatRoom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChatUser" EntityType="Self.ChatUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mess" EntityType="Self.Mess" Schema="dbo" store:Type="Tables" />
@@ -124,35 +124,35 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="shifrModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MessangerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ChatRoom">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ChatUser" Relationship="Self.FK_ChatUser_ChatRoom" FromRole="ChatRoom" ToRole="ChatUser" />
           <NavigationProperty Name="Mess" Relationship="Self.FK_Mess_ChatRoom" FromRole="ChatRoom" ToRole="Mess" />
         </EntityType>
         <EntityType Name="ChatUser">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Id_ChatRoom" Type="Int32" />
-          <Property Name="Id_User" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID_ChatRoom" Type="Int32" />
+          <Property Name="ID_User" Type="Int32" />
           <NavigationProperty Name="ChatRoom" Relationship="Self.FK_ChatUser_ChatRoom" FromRole="ChatUser" ToRole="ChatRoom" />
           <NavigationProperty Name="User" Relationship="Self.FK_ChatUser_User" FromRole="ChatUser" ToRole="User" />
         </EntityType>
         <EntityType Name="Mess">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Id_User" Type="Int32" />
-          <Property Name="Mess1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="DateTime" Type="DateTime" Precision="3" />
-          <Property Name="Id_Chatroom" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_User" Type="Int32" />
+          <Property Name="Mess1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="ID_ChatRoom" Type="Int32" />
           <NavigationProperty Name="ChatRoom" Relationship="Self.FK_Mess_ChatRoom" FromRole="Mess" ToRole="ChatRoom" />
           <NavigationProperty Name="User" Relationship="Self.FK_Mess_User" FromRole="Mess" ToRole="User" />
         </EntityType>
@@ -168,12 +168,12 @@
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Pass" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ChatUser" Relationship="Self.FK_ChatUser_User" FromRole="User" ToRole="ChatUser" />
           <NavigationProperty Name="Mess" Relationship="Self.FK_Mess_User" FromRole="User" ToRole="Mess" />
         </EntityType>
@@ -182,10 +182,10 @@
           <End Role="ChatUser" Type="Self.ChatUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChatRoom">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="ChatUser">
-              <PropertyRef Name="Id_ChatRoom" />
+              <PropertyRef Name="ID_ChatRoom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -194,10 +194,10 @@
           <End Role="Mess" Type="Self.Mess" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChatRoom">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Mess">
-              <PropertyRef Name="Id_Chatroom" />
+              <PropertyRef Name="ID_ChatRoom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -206,10 +206,10 @@
           <End Role="ChatUser" Type="Self.ChatUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="ChatUser">
-              <PropertyRef Name="Id_User" />
+              <PropertyRef Name="ID_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -218,14 +218,14 @@
           <End Role="Mess" Type="Self.Mess" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Mess">
-              <PropertyRef Name="Id_User" />
+              <PropertyRef Name="ID_User" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="shifrEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MessangerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChatRoom" EntityType="Self.ChatRoom" />
           <EntitySet Name="ChatUser" EntityType="Self.ChatUser" />
           <EntitySet Name="Mess" EntityType="Self.Mess" />
@@ -253,37 +253,37 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище shifrModelContainer" CdmEntityContainer="shifrEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MessangerModelContainer" CdmEntityContainer="MessangerEntities">
           <EntitySetMapping Name="ChatRoom">
-            <EntityTypeMapping TypeName="shifrModel.ChatRoom">
+            <EntityTypeMapping TypeName="MessangerModel.ChatRoom">
               <MappingFragment StoreEntitySet="ChatRoom">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChatUser">
-            <EntityTypeMapping TypeName="shifrModel.ChatUser">
+            <EntityTypeMapping TypeName="MessangerModel.ChatUser">
               <MappingFragment StoreEntitySet="ChatUser">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Id_ChatRoom" ColumnName="Id_ChatRoom" />
-                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_ChatRoom" ColumnName="ID_ChatRoom" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mess">
-            <EntityTypeMapping TypeName="shifrModel.Mess">
+            <EntityTypeMapping TypeName="MessangerModel.Mess">
               <MappingFragment StoreEntitySet="Mess">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
                 <ScalarProperty Name="Mess1" ColumnName="Mess" />
-                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
-                <ScalarProperty Name="Id_Chatroom" ColumnName="Id_Chatroom" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="ID_ChatRoom" ColumnName="ID_ChatRoom" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="shifrModel.sysdiagrams">
+            <EntityTypeMapping TypeName="MessangerModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -294,12 +294,12 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="shifrModel.User">
+            <EntityTypeMapping TypeName="MessangerModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
