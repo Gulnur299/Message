@@ -30,10 +30,10 @@ namespace Message.Pages
 
         }
 
-        private void Nazad_Click(object sender, RoutedEventArgs e)
-        {
+        //private void Nazad_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void Otpr_Click(object sender, RoutedEventArgs e)
         {
